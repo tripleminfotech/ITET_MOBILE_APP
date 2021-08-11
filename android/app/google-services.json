@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1087200241950",
+    "project_id": "itet-7355c",
+    "storage_bucket": "itet-7355c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1087200241950:android:0e7f6b504f221a4a37410f",
+        "android_client_info": {
+          "package_name": "com.app.itet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1087200241950-3pu961ed8ob623mcbk4ifejpgmjspovn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_0pY1B4AW_gvfAe2USUA22nCC_2FiVj8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1087200241950-3pu961ed8ob623mcbk4ifejpgmjspovn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
