@@ -1,5 +1,5 @@
-import { AsyncStorage } from "react-native";
 import Url from "./Url";
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default async function Api(path,method,data) {
   const userToken = await AsyncStorage.getItem('userToken');
