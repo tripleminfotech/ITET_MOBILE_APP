@@ -14,7 +14,14 @@ import {Provider} from 'react-redux';
 import store from './src/redux/index';
 import firebase from 'react-native-firebase';
 import {Alert, View, Text} from 'react-native';
-import {AsyncStorage} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+import Animated, {
+  Easing as OldEasing,
+  // @ts-ignore
+  EasingNode,
+} from 'react-native-reanimated';
+
+const Easing = EasingNode || OldEasing;
 export default class App extends Component {
   async componentDidMount() {
     this.checkPermission();

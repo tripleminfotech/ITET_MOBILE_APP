@@ -1,15 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {
-  AsyncStorage,
-  FlatList,
-  Image,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import {ActivityIndicator} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Api from '../../components/Api';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default function UserCertificates({navigation}) {
   const [data, setData] = useState([]);

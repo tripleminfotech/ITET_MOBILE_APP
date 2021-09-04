@@ -21,7 +21,8 @@ import Api from '../../components/Api';
 import Modal from 'react-native-modal';
 import {ProgressBar, Colors} from 'react-native-paper';
 import url from '../../components/Url';
-import {AsyncStorage} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+
 import {appColor} from '../../components/Style';
 
 export default class Certificate extends React.Component {

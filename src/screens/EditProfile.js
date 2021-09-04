@@ -9,9 +9,9 @@ import {
   SafeAreaView,
   YellowBox,
   TouchableOpacity,
-  AsyncStorage,
   TextInput,
 } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import {FloatingLabelInput} from 'react-native-floating-label-input';
 import {setGlobalStyles} from 'react-native-floating-label-input';
 import MultiSelect from 'react-native-multiple-select';
@@ -252,13 +252,23 @@ export default class EditProfile extends Component {
               </View>
               <View style={InitWindowStyles.rowContainer}>
                 <Text style={{marginBottom: 10}}>Biography</Text>
-                <FloatingLabelInput
+                {/* <FloatingLabelInput
                   label="Hey I'm a software Developer"
                   value={this.state.bio}
                   multiline={true}
                   countdownLabel="chars left"
                   maxLength={100}
                   showCountdown={true}
+                  onChangeText={(value) => this.setState({bio: value})}
+        />*/}
+                <TextInput
+                  style={InitWindowStyles.textInput}
+                  placeholder="Hey I'm a software Developer"
+                  value={this.state.bio}
+                  // multiline={true}
+                  // countdownLabel="chars left"
+                  maxLength={100}
+                  // showCountdown={true}
                   onChangeText={(value) => this.setState({bio: value})}
                 />
               </View>
@@ -372,8 +382,7 @@ export default class EditProfile extends Component {
                   color: '#fff',
                   textAlign: 'center',
                 }}>
-                {' '}
-                Save{' '}
+                Save
               </Text>
             </TouchableOpacity>
           </View>

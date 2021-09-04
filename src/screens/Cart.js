@@ -23,13 +23,15 @@ class CartScreen extends Component {
     this.state = {
       value: '',
       price: '',
-      discounted_price: '0',
+      discounted_price: '',
       total_price: '0',
+      main_total: this.props.total,
       coupon: false,
       loading: false,
     };
   }
-  total_amt() {
+
+  /*total_amt() {
     if (this.state.discounted_price == '0') {
       this.setState({price: this.props.total});
       console.log('no discount added', this.state.price);
@@ -37,7 +39,7 @@ class CartScreen extends Component {
       this.setState({price: this.state.discounted_price});
       console.log('discount ', this.state.price);
     }
-  }
+  }*/
   onPress = (id) => {
     this.props.navigation.navigate('Course', {id: id});
   };
@@ -80,7 +82,7 @@ class CartScreen extends Component {
     }
   }
   total_cost() {
-    if (this.state.discounted_price == '0')
+    if (this.state.discounted_price == ' ')
       return (
         <Text style={{fontSize: 20, textAlign: 'right'}}>
           Total: ₹{this.props.total}
@@ -93,9 +95,9 @@ class CartScreen extends Component {
         </Text>
       );
   }
-  componentDidMount() {
+  /* componentDidMount() {
     this.total_amt();
-  }
+  }*/
 
   _coupon() {
     this.applyCoupon();
@@ -106,7 +108,7 @@ class CartScreen extends Component {
     });
     var courses = [];
     this.props.cartItems.map((item) => {
-      console.log(item.id);
+      //   console.log(item.id);
       courses.push({
         course_id: item.id,
         is_bundle_course: 0,
@@ -127,6 +129,7 @@ class CartScreen extends Component {
     } else {
       this.setState({
         discounted_price: json.discounted_price,
+        main_total: json.discounted_price,
         coupon: true,
       });
       this.setState({
@@ -138,7 +141,7 @@ class CartScreen extends Component {
   async purchase_course(data) {
     var courses = [];
     this.props.cartItems.map((item) => {
-      console.log(item.id);
+      //   console.log(item.id);
       courses.push({
         course_id: item.id,
         is_bundle_course: 0,
@@ -146,12 +149,12 @@ class CartScreen extends Component {
     });
     let json = await Api('/course_purchase/', 'POST', {
       method: 'razorpay',
-      amount_paid: this.state.price,
+      amount_paid: this.state.main_total,
       payment_id: data.razorpay_payment_id,
       order_id: '132546',
       courses: courses,
     });
-    console.log(json);
+    //  console.log(json);
     return json;
   }
   _onPressButton(emptyCart) {
@@ -161,7 +164,7 @@ class CartScreen extends Component {
         'https://itexperttraining.com/wp-content/uploads/2019/09/Website_logo_black.png',
       currency: 'INR',
       key: 'rzp_live_2zcxRkaz0fQuIT',
-      amount: this.state.price * 100,
+      amount: this.state.main_total * 100,
       name: appName,
       prefill: {
         email: '',
@@ -174,7 +177,7 @@ class CartScreen extends Component {
       .then((data) => {
         // handle success
 
-        console.log(data);
+           console.log(data);
         alert(`Success your payment`);
 
         this.purchase_course(data);
@@ -183,7 +186,7 @@ class CartScreen extends Component {
       })
       .catch((error) => {
         // handle failure
-        console.log(error);
+             console.log(error);
         alert(`your payment was not success`);
       });
   }
@@ -223,6 +226,7 @@ class CartScreen extends Component {
                     borderColor: 'gray',
                     borderBottomWidth: 0.5,
                     borderRadius: 15,
+                    marginTop: 10,
                   }}
                   onChangeText={(text) => this.setState({value: text})}
                   value={this.state.value}
@@ -242,6 +246,7 @@ class CartScreen extends Component {
                       padding: 10,
                       marginRight: 10,
                       borderRadius: 15,
+                      marginTop: 10,
                     }}>
                     <Text style={{color: 'white'}}>Apply</Text>
                   </TouchableOpacity>
@@ -265,7 +270,9 @@ class CartScreen extends Component {
                   justifyContent: 'space-between',
                   margin: 10,
                 }}>
-                {this.total_cost()}
+                <Text style={{fontSize: 20, textAlign: 'right'}}>
+          Total: ₹{this.state.main_total}
+        </Text>
               </View>
 
               <TouchableOpacity

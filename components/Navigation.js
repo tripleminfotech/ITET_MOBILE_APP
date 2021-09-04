@@ -5,7 +5,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Discover from '../src/screens/Discover';
-//import Messages from '../src/screens/Messages';
+import Messages from '../src/screens/Messages';
 import MyCourses from '../src/screens/MyCourses';
 import Notification from '../src/screens/Notification';
 import Profile from '../src/screens/Profile';
